@@ -12,10 +12,15 @@
     </div>
     <div class="meta">
 
-      <span class="author">{{ .Params.author }}</span>
-      <span class="author">{{ .Params.format }}</span>
-      {{ if isset .Params "link" }}
-        <a href="{{ .Params.link }}" target="_blank">{{ .Params.linktitle }}</a>
+      {{ if isset .Params "meetupevent" }}
+        {{ if and (isset .Params.meetupevent "group") (isset .Params.meetupevent "id") }}
+          {{ $apiUrl := "https://api.meetup.com/" }}
+          {{ $meetupJson := getJSON $apiUrl (printf "%s/events/%s" .Params.meetupevent.group .Params.meetupevent.id) }}
+          {{/* $meetupJson.group.name */}}
+          <span class="author">{{ $meetupJson.group.name }}</span>
+          <a href="{{ $meetupJson.link }}" target="_blank">Meetup page</a>
+          <div>{{ .WordCount }} words</div>
+        {{ end }}
       {{ end }}
     </div>
 </header>
