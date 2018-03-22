@@ -1,0 +1,17 @@
+{{ partial "general-title" . }}
+
+{{ partial "header" . }}
+    {{ partial "navbar" . }}
+    <!-- Main -->
+    <div id="main">
+        Here are the notes I have taken during Meetups I attended.<br/>
+        Most of them are really more a draft than anything else...
+        {{ $paginator := .Paginate .Data.Pages }}
+        {{ range .Paginator.Pages }}
+            {{ .Render "content-list" }}
+        {{ end }}
+
+        {{ partial "pagination" . }}
+    </div>
+    {{ partial "sidebar" . }}
+{{ partial "footer" . }}
