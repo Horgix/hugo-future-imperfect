@@ -19,6 +19,8 @@
           {{/* $meetupJson.group.name */}}
           <span class="author">{{ $meetupJson.group.name }}</span>
           <a href="{{ $meetupJson.link }}" target="_blank">Meetup page</a>
+          <span class="author">{{ $meetupJson.local_date }}</span>
+          <span class="author">@{{ $meetupJson.venue.name }}</span>
           <div>{{ .WordCount }} words</div>
         {{ end }}
       {{ end }}
